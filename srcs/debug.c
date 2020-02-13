@@ -6,7 +6,7 @@
 /*   By: athion <athion@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 02:27:57 by athion            #+#    #+#             */
-/*   Updated: 2020/02/13 04:58:40 by athion           ###   ########.fr       */
+/*   Updated: 2020/02/13 05:17:33 by athion           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int		print_memory_line(void *addr)
 		i++;
 		o++;
 	}
-	while (o++ < 4)
-		put_str(" ");
-	o = i;
+	if (o % 2 != 0)
+		put_str("  ");
+	o = (i % 2 != 0) ? i - 1 : i;
 	while (o < 10)
 	{
 		if (o % 2)
@@ -75,9 +75,9 @@ int		print_memory_array(void *addr, int length)
 	i = 0;
 	while (tab[i] && i < length)
 	{
-		putchar('\n');
+		put_str("\n\t\t\t   array[");
 		put_nbr(i);
-		putchar('\n');
+		put_str("]\n\n");
 		print_memory(&tab[i++]);
 	}
 	return (1);
